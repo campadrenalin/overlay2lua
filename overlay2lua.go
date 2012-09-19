@@ -125,21 +125,23 @@ func exportMatrices(filename string, config *Config) {
     }
 
     // Write this data to disk
+    n, err := fmt.Fprintln(output, "return {")
+    if (n == 0 || err != nil)  { log.Fatal(err) }
     for name, _ := range table_data {
-        n, err := fmt.Fprintf(output, "%s = {", name) // start table
-        if (n == 0 || err != nil)  { log.Fatal(err) }
+        fmt.Fprintf(output, "  %s = {\n", name) // start table
 
         for y:=0; y<tiles_y; y++ {
-            fmt.Fprintf(output, " {") // start row
+            fmt.Fprintf(output, "    {") // start row
             for x:=0; x<tiles_x; x++ {
                 point := table_data[name][y][x]
                 fmt.Fprintf(output, " {%d, %d},", point.X, point.Y)
             }
-            fmt.Fprintln(output, " },") // end row
+            fmt.Fprintln(output, "    },") // end row
         }
 
-        fmt.Fprintln(output, " }\n") // End table
+        fmt.Fprintln(output, "  },\n") // End table
     }
+    fmt.Fprintln(output, "}")
 }
 
 func getConfig(filename string) (*Config, error) {
