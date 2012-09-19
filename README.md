@@ -1,10 +1,10 @@
-tmx2lua
+overlay2lua
 =======
 
-Covernt TMX files into Lua scripts
+Covert PNG overlay files into positional matrices.
 
 ## Usage
 
-    $ tmx2lua path/to/map.tmx
+    $ overlay2lua path/to/config.json path/to/character.png
 
-This will output path/to/map.lua
+This will output path/to/character.lua
