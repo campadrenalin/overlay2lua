@@ -38,6 +38,3 @@ fmt:
 clean: 
 	go clean
 	rm -rf build
-
-install: all
-	cp build/darwin/overlay2lua ~/bin
